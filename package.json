@@ -1,0 +1,29 @@
+{
+  "name": "crucidea",
+  "version": "0.0.1",
+  "description": "Open files in IntelliJ IDEA from Crucible",
+  "main": "crucidea.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basix86/crucidea.git"
+  },
+  "keywords": [
+    "code review",
+    "IntelliJ",
+    "Crucible",
+    "Atlassian",
+    "Connector"
+  ],
+  "author": "Marco Matessi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basix86/crucidea/issues"
+  },
+  "homepage": "https://github.com/basix86/crucidea#readme",
+  "dependencies": {
+    "xml2js": "^0.4.17"
+  }
+}
