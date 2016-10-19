@@ -4,12 +4,11 @@ var url = require('url');
 
 var serverPort = 51235;
 var img = fs.readFileSync('./icon.png');
+var homePath = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 
-var recentProjectsXmlPath = "~/.IdeaIC2016.2/config/options/recentProjects.xml";
+var recentProjectsXmlPath = homePath + "/.IdeaIC2016.2/config/options/recentProjects.xml";
 var projectPath = getOpenPath(recentProjectsXmlPath);
 var openIdeaCommand = "idea";
-
-var homePath = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 
 var server = http.createServer(function(req, res) {
     var request = url.parse(req.url, true);
@@ -47,7 +46,7 @@ function getOpenPath(filePath) {
             json = JSON.stringify(result);
             configuration = JSON.parse(json);
             parsedPath = configuration.application.component[0].option[1].list[0].option[0].$.value;
-            projectPath = parsedPath.replace("$USER_HOME$", "~");
+            projectPath = parsedPath.replace("$USER_HOME$", homePath);
         });
         console.log("Open path = " + projectPath + " was successfully read.\n");
         return projectPath;
