@@ -2,7 +2,10 @@
 
 Lets you open a file from FishEye web interface directly into the IntelliJ IDEA.
 
-Tested with: Atlassian FishEye analysis with Crucible code review - Version: 3.10.2 and Ubuntu 16.04
+Tested with:
+* Atlassian FishEye analysis with Crucible code review - Version: 3.10.2
+* Ubuntu 16.04
+* Firefox
 
 Prerequisite:
 * Install nodeJs
