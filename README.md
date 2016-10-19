@@ -11,3 +11,8 @@ Prerequisite:
  + from terminal `sudo apt-get install npm`
 * Create Idea Launcher
  + from IntelliJ IDEA go to `Tools/Create Command-line Launcher Script` and press OK
+
+Installation:
+* Download Crucidea and unpack it 
+* Install dependencies
+ + from terminal `npn install`
