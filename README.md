@@ -6,7 +6,8 @@ Tested with: Atlassian FishEye analysis with Crucible code review - Version: 3.1
 
 Prerequisite:
 * Install nodeJs
-`sudo apt-get install nodejs`
-* Install npm `sudo apt-get install npm`
+ + from terminal `sudo apt-get install nodejs`
+* Install npm
+ + from terminal `sudo apt-get install npm`
 * Create Idea Launcher
-
+ + from IntelliJ IDEA go to `Tools/Create Command-line Launcher Script` and press OK
