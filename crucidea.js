@@ -5,7 +5,7 @@ var url = require('url');
 var serverPort = 51235;
 var img = fs.readFileSync('./icon.png');
 
-var recentProjectsXmlPath = "/home/mmatessi/.IdeaIC2016.2/config/options/recentProjects.xml";
+var recentProjectsXmlPath = "~/.IdeaIC2016.2/config/options/recentProjects.xml";
 var projectPath = getOpenPath(recentProjectsXmlPath);
 var openIdeaCommand = "idea";
 
