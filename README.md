@@ -7,7 +7,6 @@ Tested with: Atlassian FishEye analysis with Crucible code review - Version: 3.1
 Prerequisite:
 * Install nodeJs
 `sudo apt-get install nodejs`
-* Install
-`npm sudo apt-get install npm`
+* Install npm `sudo apt-get install npm`
 * Create Idea Launcher
 
