@@ -1,29 +1,15 @@
 {
-  "name": "crucidea",
-  "version": "0.0.1",
-  "description": "Open files in IntelliJ IDEA from Crucible",
-  "main": "crucidea.js",
+  "name": "Crucidea-electron",
+  "version": "0.1.0",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/basix86/crucidea.git"
-  },
-  "keywords": [
-    "code review",
-    "IntelliJ",
-    "Crucible",
-    "Atlassian",
-    "Connector"
-  ],
-  "author": "Marco Matessi",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/basix86/crucidea/issues"
-  },
-  "homepage": "https://github.com/basix86/crucidea#readme",
-  "dependencies": {
+  "devDependencies": {
+    "electron": "^1.4.8",
+    "electron-rebuild": "^1.4.0",
+    "dotenv": "^2.0.0",
+    "md5": "^2.1.0",
     "xml2js": "^0.4.17"
   }
 }
