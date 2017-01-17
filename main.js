@@ -17,14 +17,11 @@ var serverPort = 51235;
 var iconPath = './icon.png';
 var iconFile = fs.readFileSync(iconPath);
 var homePath = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
-
-var recentProjectsXmlPath = homePath + "/.IdeaIC2016.2/config/options/recentProjects.xml";
-var projectPath = getOpenPath(recentProjectsXmlPath);
 var openIdeaCommand = "idea";
-
-var server = createServer();
+var server;
 
 app.on('ready', function () {
+
 
     handleSubmission();
     mainWindow = new BrowserWindow({ show: false });
@@ -41,6 +38,11 @@ app.on('ready', function () {
     tray.setToolTip('This is my application.');
     tray.setContextMenu(contextMenu);
 
+    let recentProjectsXmlPaths = getIdeaRecentProjectsFilePaths();
+    let lastProjectsXmlPath = recentProjectsXmlPaths[recentProjectsXmlPaths.length - 1];
+    let projectPath = getOpenPath(lastProjectsXmlPath);
+
+    server = createServer(projectPath);
     server.listen(serverPort, serverAddress);
     console.log('Server running at http://' + serverAddress + ':' + serverPort + '/');
 
@@ -48,7 +50,7 @@ app.on('ready', function () {
 
 });
 
-function createServer() {
+function createServer(projectPath) {
     return http.createServer(function (req, res) {
         var request = url.parse(req.url, true);
         var queryReq = request.query;
@@ -95,7 +97,7 @@ function openSettings() {
     const modalPath = path.join('file://', __dirname, 'settings.html');
     console.log(modalPath);
 
-    let win = new BrowserWindow({ width: 400, height: 320});
+    let win = new BrowserWindow({ width: 400, height: 320 });
     win.on('closed', () => { win = null });
     win.setMenu(null);
     win.loadURL(modalPath)
