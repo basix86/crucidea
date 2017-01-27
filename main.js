@@ -58,7 +58,7 @@ function createServer(projectPath) {
         if (queryReq.file && queryReq.line) {
             let filePath = projectPath + "/" + queryReq.file;
             let exec = require('child_process').exec;
-            let cmd = openIdeaCommand + " --line " + queryReq.line + " " + filePath;
+            let cmd = openIdeaCommand + " --line " + queryReq.line + " '" + filePath + "'";
             exec(cmd, function (error, stdout, stderr) {
                 console.log(cmd);
             });
