@@ -1,5 +1,5 @@
 {
-  "name": "Crucidea-electron",
+  "name": "crucidea",
   "version": "0.1.0",
   "main": "main.js",
   "scripts": {
@@ -11,5 +11,16 @@
     "dotenv": "^2.0.0",
     "md5": "^2.1.0",
     "xml2js": "^0.4.17"
-  }
+  },
+  "description": "Lets you open a file from FishEye web interface directly into the IntelliJ IDEA.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basix86/crucidea.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basix86/crucidea/issues"
+  },
+  "homepage": "https://github.com/basix86/crucidea#readme"
 }
