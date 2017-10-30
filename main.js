@@ -16,6 +16,7 @@ const iconPath = './icon.png';
 const iconFile = fs.readFileSync(iconPath);
 const homePath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 const openIdeaCommand = "idea";
+const settings = require('electron-settings');
 
 let mainWindow = null;
 let tray = null
@@ -23,6 +24,8 @@ let server;
 let projectPath;
 
 app.on('ready', function () {
+
+
 
 
     handleSubmission();
@@ -42,13 +45,33 @@ app.on('ready', function () {
 
     let recentProjectsXmlPaths = getIdeaRecentProjectsFilePaths();
     let lastProjectsXmlPath = recentProjectsXmlPaths[recentProjectsXmlPaths.length - 1];
+
+    console.log('Current xml = ' + lastProjectsXmlPath);
+    let hasSetting = settings.has('project.xml');
+    console.log('Has Settings = ' + hasSetting);
+
+    if (hasSetting) {
+        let loadedProjectXmlPath = settings.get('project.xml');
+        if (fs.existsSync(loadedProjectXmlPath) && fs.statSync(loadedProjectXmlPath).isFile()) {
+            lastProjectsXmlPath = loadedProjectXmlPath;
+        }
+    }
+
+    console.log("lastProjectsXmlPath = " + lastProjectsXmlPath);
+
+    settings.set('project', {
+        xml: 'lastProjectsXmlPath',
+    });
+
+    console.log("Settings saved");
+
     this.projectPath = getOpenPath(lastProjectsXmlPath);
 
     server = createServer(projectPath);
     server.listen(serverPort, serverAddress);
     console.log('Server running at http://' + serverAddress + ':' + serverPort + '/');
 
-    printDirs(homePath);
+    //printDirs();
 
 });
 
@@ -128,7 +151,7 @@ function handleSubmission() {
     });
 }
 
-function printDirs(p) {
+function printDirs() {
     getIdeaRecentProjectsFilePaths().forEach(function (file) {
         console.log("%s (%s)", file, path.basename(file));
     });
