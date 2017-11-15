@@ -17,7 +17,7 @@ const settings = require('electron-settings');
 let win;
 
 let mainWindow = null;
-let tray = null
+let tray = null;
 let server;
 let projectPath;
 
@@ -29,7 +29,7 @@ function createWindow () {
     height: 600,
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/lib/logo.png`
-  })
+  });
   win.loadURL(`file://${__dirname}/lib/index.html`)
   //// uncomment below to open the DevTools.
   // win.webContents.openDevTools()
@@ -39,14 +39,14 @@ function createWindow () {
   });
 }
 // Create window on electron intialization
-  app.on('ready', startServer)
+  app.on('ready', startServer);
 // Quit when all windows are closed.
   app.on('window-all-closed', function () {
     // On macOS specific close process
     if (process.platform !== 'darwin') {
       app.quit();
     }
-  })
+  });
   app.on('activate', function () {
     // macOS specific close process
     if (win === null) {
