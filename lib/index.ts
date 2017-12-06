@@ -13,6 +13,7 @@ const iconFile = fs.readFileSync(iconPath);
 const homePath = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 const openIdeaCommand = 'idea';
 const settings = require('electron-settings');
+const PROJECT_XML_PATH_KEY:string = 'projectxmlpath';
 
 let win;
 
@@ -54,6 +55,30 @@ function createWindow () {
     }
   });
 
+
+  function loadSettings():string {
+    console.log('Loading Crucidea settings from: ', settings.file());
+    const projectXmlPathDefined = settings.has(PROJECT_XML_PATH_KEY);
+
+    if (!projectXmlPathDefined) {
+      console.log(PROJECT_XML_PATH_KEY + ' not found. It will restored');
+      const recentProjectsXmlPaths = getIdeaRecentProjectsFilePaths();
+      let path = recentProjectsXmlPaths[recentProjectsXmlPaths.length - 1];
+      settings.set(PROJECT_XML_PATH_KEY, path);
+      console.log('path', path)
+
+
+    }
+    const path = settings.get(PROJECT_XML_PATH_KEY);
+    console.log('Loading recent project files from ', path);
+
+    return path;
+  }
+
+  function isValidFile(path: string) {
+      return fs.existsSync(path) && fs.statSync(path).isFile();
+  }
+
   function startServer() {
     handleSubmission();
     mainWindow = new BrowserWindow({show: false});
@@ -78,6 +103,7 @@ function createWindow () {
     tray.setToolTip('This is my application.');
     tray.setContextMenu(contextMenu);
 
+    /*
     const recentProjectsXmlPaths = getIdeaRecentProjectsFilePaths();
     let lastProjectsXmlPath = recentProjectsXmlPaths[recentProjectsXmlPaths.length - 1];
 
@@ -90,6 +116,7 @@ function createWindow () {
       if (fs.existsSync(loadedProjectXmlPath) && fs.statSync(loadedProjectXmlPath).isFile()) {
         lastProjectsXmlPath = loadedProjectXmlPath;
       }
+
     }
 
     console.log('lastProjectsXmlPath = ' + lastProjectsXmlPath);
@@ -101,6 +128,9 @@ function createWindow () {
     console.log('Settings saved');
 
     this.projectPath = getOpenPath(lastProjectsXmlPath);
+   */
+
+   projectPath = loadSettings();
 
     server = createServer(projectPath);
     server.listen(serverPort, serverAddress);
